@@ -28,18 +28,6 @@ namespace BuilderTestSample.Tests.TestBuilders
             _country = "testCountry";
         }
 
-        public AddressBuilder WithCity(string city)
-        {
-            _city = city;
-            return this;
-        }
-
-        public AddressBuilder WithStreet1(string street1)
-        {
-            _street1 = street1;
-            return this;
-        }
-
         public Address Build()
         {
             return new Address()
@@ -52,6 +40,24 @@ namespace BuilderTestSample.Tests.TestBuilders
                 PostalCode = _postalCode,
                 Country = _country
             };
+        }
+
+        public AddressBuilder WithCity(string city)
+        {
+            _city = city;
+            return this;
+        }
+
+        public AddressBuilder WithStreet1(string street1)
+        {
+            _street1 = street1;
+            return this;
+        }
+
+        public AddressBuilder WithState(string state)
+        {
+            _state = state;
+            return this;
         }
     }
 }
