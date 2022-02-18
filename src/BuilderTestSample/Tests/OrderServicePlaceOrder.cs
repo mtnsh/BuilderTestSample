@@ -14,6 +14,20 @@ namespace BuilderTestSample.Tests
 
 
         [Fact]
+        public void ThrowsExceptionGivenCustomerTotalPurchasesLessThan0()
+        {
+            var customer = _customerBuilder
+                .WithTotalPurchases(-1)
+                .Build();
+
+            var order = _orderBuilder
+                            .WithCustomer(customer)
+                            .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
         public void ThrowsExceptionGivenCustomerCreditIsLessThan201()
         {
             var customer = _customerBuilder

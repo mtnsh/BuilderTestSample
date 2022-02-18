@@ -9,6 +9,7 @@ namespace BuilderTestSample.Tests.TestBuilders
         private string _firstName;
         private string _lastName;
         private int _credit;
+        private int _totalPurchases;
 
 
         public Customer Build()
@@ -18,7 +19,8 @@ namespace BuilderTestSample.Tests.TestBuilders
                 HomeAddress = _address,
                 FirstName = _firstName,
                 LastName = _lastName,
-                CreditRating = _credit
+                CreditRating = _credit,
+                TotalPurchases = _totalPurchases
             };
         }
 
@@ -29,6 +31,7 @@ namespace BuilderTestSample.Tests.TestBuilders
             _firstName = "john";
             _lastName = "doe";
             _credit = 201;
+            _totalPurchases = 0;
         }
 
         public CustomerBuilder WithId(int id)
@@ -58,6 +61,12 @@ namespace BuilderTestSample.Tests.TestBuilders
         public CustomerBuilder WithCredit(int credit)
         {
             _credit = credit;
+            return this;
+        }
+
+        public CustomerBuilder WithTotalPurchases(int totalPurchases)
+        {
+            _totalPurchases = totalPurchases;
             return this;
         }
     }
