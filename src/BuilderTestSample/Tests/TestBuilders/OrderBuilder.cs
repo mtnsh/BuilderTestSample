@@ -1,4 +1,5 @@
 ﻿using BuilderTestSample.Model;
+using System;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
@@ -7,10 +8,11 @@ namespace BuilderTestSample.Tests.TestBuilders
     /// </summary>
     public class OrderBuilder
     {
-        private Order _order = new ();
+        private readonly Order _order = new ();
 
         public OrderBuilder()
         {
+            _order.Id = 0;
             _order.TotalAmount = 100m;
 
             // TODO: replace next lines with a CustomerBuilder you create
@@ -21,6 +23,18 @@ namespace BuilderTestSample.Tests.TestBuilders
         public OrderBuilder WithId(int id)
         {
             _order.Id = id;
+            return this;
+        }
+
+        public OrderBuilder WithTotalAmount(int totalAmount)
+        {
+            _order.TotalAmount = totalAmount;
+            return this;
+        }
+
+        public OrderBuilder WithCustomer(Customer customer)
+        {
+            _order.Customer = customer;
             return this;
         }
 

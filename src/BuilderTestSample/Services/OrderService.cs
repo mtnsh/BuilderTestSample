@@ -18,11 +18,9 @@ namespace BuilderTestSample.Services
         {
             // throw InvalidOrderException unless otherwise noted.
 
-            // TODO: order ID must be zero (it's a new order)
             if (order.Id != 0) throw new InvalidOrderException("Order ID must be 0.");
-
-            // TODO: order amount must be greater than zero
-            // TODO: order must have a customer (customer is not null)
+            if (order.TotalAmount <= 0) throw new InvalidOrderException("Order total amount must be greater 0.");
+            if (order.Customer is null) throw new InvalidOrderException("Order must have a customer");
 
             ValidateCustomer(order.Customer);
         }
@@ -32,10 +30,10 @@ namespace BuilderTestSample.Services
             // throw InvalidCustomerException unless otherwise noted
             // create a CustomerBuilder to implement the tests for these scenarios
 
-            // TODO: customer must have an ID > 0
-            // TODO: customer must have an address (it is not null)
-            // TODO: customer must have a first and last name
-            // TODO: customer must have credit rating > 200 (otherwise throw InsufficientCreditException)
+            if (customer.Id <= 0) throw new InvalidCustomerException("Customer must have an ID > 0.");
+            if (customer.HomeAddress is null) throw new InvalidCustomerException("Customer must have address.");
+            if (string.IsNullOrEmpty(customer.FirstName) || string.IsNullOrEmpty(customer.LastName)) throw new InvalidCustomerException("Customer must have a first and last name.");
+            if (customer.CreditRating <= 200) throw new InsufficientCreditException("Customer must have credit rating > 200.");
             // TODO: customer must have total purchases >= 0
 
             ValidateAddress(customer.HomeAddress);
