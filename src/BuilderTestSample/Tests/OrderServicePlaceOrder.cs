@@ -15,6 +15,24 @@ namespace BuilderTestSample.Tests
 
 
         [Fact]
+        public void ThrowsExceptionPostalCodeIsNull()
+        {
+            var address = _addressBuilder
+                            .WithPostalCode(null)
+                            .Build();
+
+            var customer = _customerBuilder
+                .WithAddress(address)
+                .Build();
+
+            var order = _orderBuilder
+                            .WithCustomer(customer)
+                            .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
         public void ThrowsExceptionStateIsNull()
         {
             var address = _addressBuilder

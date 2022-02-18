@@ -59,5 +59,11 @@ namespace BuilderTestSample.Tests.TestBuilders
             _state = state;
             return this;
         }
+
+        public AddressBuilder WithPostalCode(string postalCode)
+        {
+            _postalCode = postalCode;
+            return this;
+        }
     }
 }
