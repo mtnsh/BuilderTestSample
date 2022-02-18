@@ -28,6 +28,12 @@ namespace BuilderTestSample.Tests.TestBuilders
             _country = "testCountry";
         }
 
+        public AddressBuilder WithCity(string city)
+        {
+            _city = city;
+            return this;
+        }
+
         public AddressBuilder WithStreet1(string street1)
         {
             _street1 = street1;

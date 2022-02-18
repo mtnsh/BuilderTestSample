@@ -43,6 +43,7 @@ namespace BuilderTestSample.Services
             // throw InvalidAddressException unless otherwise noted
             // create an AddressBuilder to implement the tests for these scenarios
             if (string.IsNullOrEmpty(homeAddress.Street1)) throw new InvalidAddressException("Address must have street1.");
+            if (string.IsNullOrEmpty(homeAddress.City)) throw new InvalidAddressException("Address must have city.");
 
             // TODO: city is required (not null or empty)
             // TODO: state is required (not null or empty)
