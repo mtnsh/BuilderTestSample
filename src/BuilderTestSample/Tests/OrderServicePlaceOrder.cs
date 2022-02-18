@@ -11,7 +11,26 @@ namespace BuilderTestSample.Tests
         private readonly OrderService _orderService = new ();
         private readonly OrderBuilder _orderBuilder = new ();
         private readonly CustomerBuilder _customerBuilder = new ();
+        private readonly AddressBuilder _addressBuilder = new ();
 
+
+        [Fact]
+        public void ThrowsExceptionAddressIsNull()
+        {
+            var address = _addressBuilder
+                            .WithStreet1(null)
+                            .Build();
+
+            var customer = _customerBuilder
+                .WithAddress(address)
+                .Build();
+
+            var order = _orderBuilder
+                            .WithCustomer(customer)
+                            .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
 
         [Fact]
         public void ThrowsExceptionGivenCustomerTotalPurchasesLessThan0()
